@@ -1,6 +1,6 @@
 # caddy.client
 
-A .NET Standard/C# implementation of the Monday.com API.
+A .NET Standard/C# implementation of the caddyserver.com API.
 
 ## Important Notice
 
