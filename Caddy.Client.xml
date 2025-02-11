@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Caddy.Client</name>
+    </assembly>
+    <members>
+        <member name="T:Caddy.Client.CaddyClient">
+            <summary>
+            <see href="https://caddyserver.com/docs/api#api"/>
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.LoadConfiguration``1(System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            POST /load: uses a Caddyfile by default.
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.Stop``1(System.Threading.CancellationToken)">
+            <summary>
+            POST /stop: This is a fire‑and‑forget endpoint (an empty response is considered success).
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.GetConfig``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            GET /config/[path]: uses JSON.
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.SetConfig``1(System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            POST /config/[path]: uses JSON.
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.CreateConfig``1(System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            PUT /config/[path]: uses JSON.
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.UpdateConfig``1(System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            PATCH /config/[path]: uses JSON.
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.DeleteConfig``1(System.String,System.Threading.CancellationToken)">
+            <summary>
+            DELETE /config/[path]: uses JSON.
+            </summary>
+        </member>
+        <member name="M:Caddy.Client.CaddyClient.AdaptConfig``1(System.Object,System.String,System.Threading.CancellationToken)">
+            <summary>
+            POST /adapt: uses a Caddyfile by default.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Caddy.Client.CaddyClient.GetCAInfo``1(System.String,System.Threading.CancellationToken)" -->
+        <!-- Badly formed XML comment ignored for member "M:Caddy.Client.CaddyClient.GetCACertificates``1(System.String,System.Threading.CancellationToken)" -->
+        <member name="M:Caddy.Client.CaddyClient.GetReverseProxyUpstreams``1(System.Threading.CancellationToken)">
+            <summary>
+            GET /reverse_proxy/upstreams: uses JSON.
+            </summary>
+        </member>
+    </members>
+</doc>

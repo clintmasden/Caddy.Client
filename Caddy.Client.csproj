@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Clint Masden</Authors>
+    <Product>Caddy Client</Product>
+    <Description>Caddy Client API</Description>
+    <PackageTags>Caddy Client API caddyserver.com/</PackageTags>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/clintmasden/caddy.client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/clintmasden/caddy.client</RepositoryUrl>
+    <PackageId>Caddy.Client</PackageId>
+    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>Caddy.Client.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>Caddy.Client.xml</DocumentationFile>
+  </PropertyGroup>
+
+
+</Project>
