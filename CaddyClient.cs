@@ -15,14 +15,17 @@ namespace Caddy.Client
     {
         private readonly HttpClient _httpClient;
 
-        public CaddyClient(string apiUrl, string username, string password)
+        public CaddyClient(string apiUrl, string username=null, string password=null)
         {
             // Ensure the apiUrl is the admin API endpoint (including the proper port).
             _httpClient = new HttpClient { BaseAddress = new Uri(apiUrl) };
 
-            // Set up basic authentication.
-            var authToken = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
+            if (!string.IsNullOrEmpty(username) && password != null)
+            {
+                // Set up basic authentication.
+                var authToken = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
+                _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
+            }
 
             // By default, accept JSON responses.
             _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
