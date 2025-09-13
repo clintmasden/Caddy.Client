@@ -7,13 +7,11 @@
     <Product>Caddy Client</Product>
     <Description>Caddy Client API</Description>
     <PackageTags>Caddy Client API caddyserver.com/</PackageTags>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated constructor with optional authorization</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/clintmasden/caddy.client</PackageProjectUrl>
     <RepositoryUrl>https://github.com/clintmasden/caddy.client</RepositoryUrl>
     <PackageId>Caddy.Client</PackageId>
-    <Version>1.0.0.0</Version>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.0.0.0</FileVersion>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

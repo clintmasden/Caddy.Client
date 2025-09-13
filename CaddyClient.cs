@@ -13,19 +13,24 @@ namespace Caddy.Client
     /// </summary>
     public class CaddyClient
     {
-        private readonly HttpClient _httpClient;
+        private HttpClient _httpClient { get; set; }
+
+        public CaddyClient(string apiUrl)
+        {
+            _httpClient = new HttpClient { BaseAddress = new Uri(apiUrl) };
+            _httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json")
+            );
+        }
 
         public CaddyClient(string apiUrl, string username, string password)
+            : this(apiUrl)
         {
-            // Ensure the apiUrl is the admin API endpoint (including the proper port).
-            _httpClient = new HttpClient { BaseAddress = new Uri(apiUrl) };
-
-            // Set up basic authentication.
-            var authToken = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{username}:{password}"));
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authToken);
-
-            // By default, accept JSON responses.
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            var authToken = Convert.ToBase64String(
+                Encoding.ASCII.GetBytes($"{username}:{password}")
+            );
+            _httpClient.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Basic", authToken);
         }
 
         #region Endpoints (Generic Only)
@@ -37,7 +42,6 @@ namespace Caddy.Client
         {
             return await SendRequest<T>("/load", HttpMethod.Post, config, contentType, cancellationToken);
         }
-
 
         /// <summary>
         /// POST /stop: This is a fire‑and‑forget endpoint (an empty response is considered success).
@@ -58,7 +62,6 @@ namespace Caddy.Client
             {
                 return Result<T>.Fail(ex.Message);
             }
-
         }
 
         /// <summary>
@@ -133,7 +136,7 @@ namespace Caddy.Client
             return await SendRequest<T>("/reverse_proxy/upstreams", HttpMethod.Get, null, "application/json", cancellationToken);
         }
 
-        #endregion
+        #endregion Endpoints (Generic Only)
 
         #region Internal Helper
 
@@ -167,7 +170,7 @@ namespace Caddy.Client
                 var response = await _httpClient.SendAsync(request, cancellationToken);
                 response.EnsureSuccessStatusCode();
 
-               var responseData = await response.Content.ReadAsStringAsync();
+                var responseData = await response.Content.ReadAsStringAsync();
                 if (string.IsNullOrWhiteSpace(responseData))
                 {
                     if (typeof(T) == typeof(string))
@@ -191,7 +194,7 @@ namespace Caddy.Client
             }
         }
 
-        #endregion
+        #endregion Internal Helper
     }
 
     public class Result<T>
@@ -201,6 +204,7 @@ namespace Caddy.Client
         public T Data { get; private set; }
 
         public static Result<T> Success(T data) => new Result<T> { IsSuccess = true, Data = data };
+
         public static Result<T> Fail(string errorMessage) => new Result<T> { IsSuccess = false, ErrorMessage = errorMessage };
     }
 }
